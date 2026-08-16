@@ -138,19 +138,21 @@ export default function EnvelopeOpener({ onOpen }: EnvelopeOpenerProps) {
             ))}
           </div>
 
-          {/* Floating lotus petals */}
+          {/* Floating rose petals */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {petals.map((petal) => (
               <motion.div
                 key={petal.id}
                 className="absolute top-[-10%]"
-                style={{ left: petal.left }}
                 animate={{
                   y: ['0vh', '115vh'],
                   x: [0, petal.drift, petal.drift * -0.35],
-                  rotate: [0, 120, 240],
+                  rotateZ: [0, 120, 240],
+                  rotateX: [0, 360, 720],
+                  rotateY: [0, 180, 360],
                   opacity: [0, 0.8, 0.65, 0],
                 }}
+                style={{ transformStyle: 'preserve-3d', left: petal.left }}
                 transition={{
                   duration: petal.duration,
                   delay: petal.delay,
@@ -159,7 +161,7 @@ export default function EnvelopeOpener({ onOpen }: EnvelopeOpenerProps) {
                 }}
               >
                 <div
-                  className="h-5 w-3 rounded-full bg-gradient-to-b from-[#b7e4c7] via-[#2d6a4f] to-[#012b26] shadow-[0_0_14px_rgba(183,228,199,0.15)]"
+                  className="h-5 w-3 rounded-full bg-gradient-to-b from-[#ff4d4d] via-[#cc0000] to-[#800000] shadow-[0_0_14px_rgba(204,0,0,0.15)]"
                   style={{
                     transform: `scale(${petal.scale}) rotate(18deg)`,
                     borderRadius: '70% 30% 70% 30% / 70% 30% 70% 30%',

@@ -32,6 +32,8 @@ function FloatingPetals() {
       x: number;
       size: number;
       rotation: number;
+      rotationX: number;
+      rotationY: number;
       duration: number;
       delay: number;
       color: string;
@@ -49,13 +51,15 @@ function FloatingPetals() {
       return;
     }
 
-    const colors = ["#ff0080", "#ff8c00", "#ffd700", "#00ffff", "#8a2be2", "#ffffff"];
+    const colors = ["#ff0000", "#cc0000", "#990000", "#e60000", "#ff3333", "#b30000"];
     const petalCount = isMobile ? 15 : 25;
     const newPetals = Array.from({ length: petalCount }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
-      size: Math.random() * 8 + 6,
+      size: Math.random() * 12 + 10,
       rotation: Math.random() * 360,
+      rotationX: Math.random() * 360,
+      rotationY: Math.random() * 360,
       duration: Math.random() * 12 + 14,
       delay: Math.random() * 20,
       color: colors[Math.floor(Math.random() * colors.length)],
@@ -74,17 +78,20 @@ function FloatingPetals() {
         <motion.div
           key={petal.id}
           className="absolute drop-shadow-[0_2px_6px_rgba(227,207,172,0.4)]"
-          style={{ color: petal.color }}
           initial={{
             x: `${petal.x}vw`,
             y: "-10vh",
-            rotate: petal.rotation,
+            rotateZ: petal.rotation,
+            rotateX: petal.rotationX,
+            rotateY: petal.rotationY,
             opacity: 0,
           }}
           animate={{
             y: "110vh",
             x: `${petal.x + petal.drift}vw`,
-            rotate: petal.rotation + (isLowPowerMode ? 360 : 720),
+            rotateZ: petal.rotation + (isLowPowerMode ? 360 : 720),
+            rotateX: petal.rotationX + (isLowPowerMode ? 360 : 1080),
+            rotateY: petal.rotationY + (isLowPowerMode ? 360 : 720),
             opacity: [0, 0.9, 0.8, 0],
           }}
           transition={{
@@ -92,6 +99,10 @@ function FloatingPetals() {
             repeat: Infinity,
             delay: petal.delay,
             ease: "linear",
+          }}
+          style={{ 
+            color: petal.color,
+            transformStyle: "preserve-3d"
           }}
         >
           <svg
@@ -101,7 +112,7 @@ function FloatingPetals() {
             fill="currentColor"
             className="drop-shadow-sm"
           >
-            <path d="M12,2C12,2 10,6 10,10C10,14 12,22 12,22C12,22 14,14 14,10C14,6 12,2 12,2Z" />
+            <path d="M12.5,2.5 C17.5,2.5 21.5,6.5 20.5,12.5 C19.5,18.5 15.5,21.5 12.5,21.5 C9.5,21.5 5.5,18.5 4.5,12.5 C3.5,6.5 7.5,2.5 12.5,2.5 Z" />
           </svg>
         </motion.div>
       ))}
@@ -776,7 +787,7 @@ function WeddingInvitation() {
                     You're Invited to the wedding of
                   </p>
                   <h1 className="font-alex text-4xl sm:text-5xl md:text-7xl text-white mb-8 md:mb-10 drop-shadow-lg text-center leading-tight">
-                    Hashani & Nalindra
+                    Heshani & Nalindra
                   </h1>
                   <button
                     onClick={() => {
@@ -1047,7 +1058,7 @@ function WeddingInvitation() {
 
                     <div className="w-full flex justify-center overflow-hidden">
                       <h3 className="text-[3.5rem] sm:text-6xl md:text-[8rem] lg:text-[9rem] font-alex text-gold-gradient leading-none drop-shadow-sm px-2 pb-2">
-                        Hashani
+                        Heshani
                       </h3>
                     </div>
 
@@ -1471,7 +1482,7 @@ function WeddingInvitation() {
 
                   <div className="mt-20 pt-8 border-t-[0.5px] border-[#d4af37]/30 w-full max-w-xs md:max-w-md flex flex-col items-center gap-4">
                     <p className="text-[8px] md:text-[10px] uppercase tracking-[0.4em] md:tracking-[0.6em] text-[#f7e7ce]/70 font-bold leading-relaxed flex flex-col md:flex-row items-center gap-2 md:gap-4">
-                      <span>© 2026 Hashani & Nalindra</span>
+                      <span>© 2026 Heshani & Nalindra</span>
                       <span className="hidden md:inline text-[#d4af37]/30">|</span>
                       <span>All Rights Reserved</span>
                     </p>
